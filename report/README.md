@@ -2,22 +2,45 @@ Programming assignment 4
 ================
 
 **Author**: Alejandro Jaume-Losa **Date**: Last update: 2024-04-12
-12:49:20.491528
+17:40:22.401128
 
 # Overview
 
-<!-- 
-  Talk briefly about what you did here 
-  Describe your hypotheses
--->
+## What did I do?
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+In order to complete this last programming assignment, I first forked
+the repo and cloned it to my computer using Github Desktop. Then, I took
+a look at its structure and the README files in each folder. Once I had
+a “clear” idea of what I had to (+/-), I proceed to run the first Praat
+script. This script was intended to normalize the peak intensity of all
+of the files in the ‘wavs’ folders. This script was not broken and I did
+not have to add anyting else either, so I just ran it. Once I was done
+doing that, I proceeded to run the second script, which was intended to
+read in every .wav file from the ‘wavs’ folders and create a
+corresponding TextGrid with the same name. This script had some missing
+information, so I had to add the participant ID (i.e., bi02) and also
+replace “XXXX” with “45” (i.e., the total number of recordings per
+participant). Once that was done, I proceeded to segment all the file
+using the TextGrids created by the second Praat script (this took a
+while). Finally, once I was done doing that, I proceeded to run the
+third and last Praat script, which was intended to extract the VOT, F1,
+and F2 values from each file and create a .csv file for each
+participant. Once I had all the .csv files, I opened R and loaded the
+necessary packages. Then, I loaded the six .csv files and combined them.
+After that, I tidyed the data, I did some descriptive stats, and created
+some plots.
+
+## Hypothesis
+
+For this programming assignment, we are working with data from 3
+bilingual speakers (Spanish-English), and 3 L2 learners (native speakers
+of English). Based on this, we can assume that their production of the
+target words will be different. For instance, in terms of VOT, Spanish
+and English are different: Spanish has short and lead lag, while English
+has short, long, and lead lag). This can be summarized by saying that
+the VOT for Spanish stops is shorter compared to the longer VOT that
+English stops have. Therefore, my hypothesis is that the L2 learners
+will have longer VOTs, due to influence of English.
 
 # Prep
 
@@ -340,7 +363,7 @@ means <- data_final %>%
   group_by(id) %>%
   summarise(vot_mean = mean(vot), vot_sd = sd(vot), f1_mean = mean(f1), f1_sd = sd(f1), f2_mean = mean(f2), f2_sd = sd(f2))
 
-kable(means, caption = "**Means and SD per participant**")
+kable(means)
 ```
 
 | id   | vot_mean |    vot_sd |  f1_mean |    f1_sd |  f2_mean |    f2_sd |
@@ -352,14 +375,12 @@ kable(means, caption = "**Means and SD per participant**")
 | ne02 | 31.63333 | 16.845453 | 541.8582 | 212.1680 | 1833.359 | 658.8014 |
 | ne03 | 34.90911 | 16.299097 | 569.7533 | 143.6087 | 1641.323 | 570.6210 |
 
-**Means and SD per participant**
-
 ``` r
 means_group <- data_final %>%
   group_by(group) %>%
   summarise(vot_mean = mean(vot), vot_sd = sd(vot), f1_mean = mean(f1), f1_sd = sd(f1), f2_mean = mean(f2), f2_sd = sd(f2))
 
-kable(means_group, caption = "**Means and SD per group**")
+kable(means_group)
 ```
 
 | group | vot_mean |   vot_sd |  f1_mean |    f1_sd |  f2_mean |    f2_sd |
@@ -367,14 +388,12 @@ kable(means_group, caption = "**Means and SD per group**")
 | bi    | 20.41104 | 15.35773 | 552.6099 | 180.8129 | 1675.675 | 679.0975 |
 | ne    | 31.58326 | 16.61162 | 573.3844 | 201.1625 | 1781.076 | 658.4155 |
 
-**Means and SD per group**
-
 ``` r
 bi_means <- bi_final %>%
   group_by(id) %>%
   summarise(vot_mean = mean(vot), vot_sd = sd(vot), f1_mean = mean(f1), f1_sd = sd(f1), f2_mean = mean(f2), f2_sd = sd(f2))
 
-kable(bi_means, caption = "**Means and SD per bilingual participant**")
+kable(bi_means)
 ```
 
 | id   | vot_mean |    vot_sd |  f1_mean |    f1_sd |  f2_mean |    f2_sd |
@@ -383,14 +402,12 @@ kable(bi_means, caption = "**Means and SD per bilingual participant**")
 | bi02 | 17.86356 |  7.542213 | 525.0113 | 132.9608 | 1588.668 | 677.9067 |
 | bi03 | 17.17222 |  7.357463 | 612.5673 | 239.1793 | 1711.122 | 699.1391 |
 
-**Means and SD per bilingual participant**
-
 ``` r
 ne_means <- ne_final %>%
   group_by(id) %>%
   summarise(vot_mean = mean(vot), vot_sd = sd(vot), f1_mean = mean(f1), f1_sd = sd(f1), f2_mean = mean(f2), f2_sd = sd(f2))
 
-kable(ne_means, caption = "**Means and SD per native speaker participant**")
+kable(ne_means)
 ```
 
 | id   | vot_mean |   vot_sd |  f1_mean |    f1_sd |  f2_mean |    f2_sd |
@@ -399,7 +416,18 @@ kable(ne_means, caption = "**Means and SD per native speaker participant**")
 | ne02 | 31.63333 | 16.84545 | 541.8582 | 212.1680 | 1833.359 | 658.8014 |
 | ne03 | 34.90911 | 16.29910 | 569.7533 | 143.6087 | 1641.323 | 570.6210 |
 
-**Means and SD per native speaker participant**
+``` r
+means_vot_group <- data_final %>%
+  group_by(group) %>%
+  summarise(vot_mean = mean(vot), vot_sd = sd(vot))
+
+kable(means_vot_group)
+```
+
+| group | vot_mean |   vot_sd |
+|:------|---------:|---------:|
+| bi    | 20.41104 | 15.35773 |
+| ne    | 31.58326 | 16.61162 |
 
 ## Visualization
 
@@ -609,19 +637,7 @@ ggplot(plot_f2u, aes(x = item, y = f2, fill = group)) +
 
 <img src="README_files/figure-gfm/plots-21.png" width="672" />
 
-<!-- 
-Also include a professional looking figure illustrating an example of the acoustics 
-of the production data, i.e., a plot generated in praat.
-You decide what is relevant (something related to your hypothesis). 
-Think about where this file should be located in your project. 
-What location makes most sense in terms of organization? 
-How will you access the file (path) from this .Rmd file?
-If you need help consider the following sources: 
-  - Search 'Rmarkdown image' on google, stackoverflow, etc.
-  - Search the 'knitr' package help files in RStudio
-  - Search the internet for HTML code (not recommended, but it works)
-  - Check the code from my class presentations (may or may not be helpful)
--->
+# Praat pictures
 
 ## Hypothesis test
 
@@ -631,20 +647,28 @@ If you need help consider the following sources:
 
 # Conclusion
 
-<!-- 
-Revisit your hypotheses (refer to plots, figures, tables, statistical tests, 
-etc.)
-&#10;Reflect on the entire process. 
-What did you enjoy? What did you hate? What did you learn? 
-What would you do differently?
--->
+The initial hypothesis was that the L2 learners will have longer VOTs
+due to the influence of their L1). After analyzing the data,
+specifically the VOT averages for bilingual participants compared to the
+VOT averages for L2 learners, we can see that each individual L2 learner
+had longer VOT than the bilingual participants.
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+kable(bi_means) kable(ne_means)
+
+Additionally, taken as a whole, the L2 learner group also had longer VOT
+than the bilingual group.
+
+kable(means_vot_group)
+
+# Reflections
+
+This was a VERY long assignment. In my opinion, the most complicated
+part was understanding what had to be done every time. I felt like the
+instruction were not as detailed compared to the three previous
+programming assignments and I never really knew if I was doing what was
+supposed to be done. Also, segmenting all the files took a very long
+time. The R part was relatively easy. However, I believe this assignment
+was very complete. I was able to apply all the skills I learned in this
+class.
 
 </br></br>

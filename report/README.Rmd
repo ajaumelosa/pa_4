@@ -281,11 +281,6 @@ ggplot(plot_f2u, aes(x = item, y = f2, fill = group)) +
 
 # Praat pictures
 
-```{r}
-
-praatpicture('./recordings/bi01/wavs/bi01_kaka.wav', start=0.5, end=1.1, 
-             tg_tiers=c(2,3), tg_focusTier=3, tg_tierNames=FALSE)
-```
 
 
 ## Hypothesis test
