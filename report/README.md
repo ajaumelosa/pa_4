@@ -2,7 +2,7 @@ Programming assignment 4
 ================
 
 **Author**: Alejandro Jaume-Losa **Date**: Last update: 2024-04-12
-17:40:22.401128
+17:46:09.814569
 
 # Overview
 
@@ -648,17 +648,42 @@ ggplot(plot_f2u, aes(x = item, y = f2, fill = group)) +
 # Conclusion
 
 The initial hypothesis was that the L2 learners will have longer VOTs
-due to the influence of their L1). After analyzing the data,
-specifically the VOT averages for bilingual participants compared to the
-VOT averages for L2 learners, we can see that each individual L2 learner
-had longer VOT than the bilingual participants.
+due to the influence of their L1. After analyzing the data, specifically
+the VOT averages for bilingual participants compared to the VOT averages
+for L2 learners, we can see that each individual L2 learner had longer
+VOT than the bilingual participants.
 
-kable(bi_means) kable(ne_means)
+``` r
+kable(bi_means)
+```
+
+| id   | vot_mean |    vot_sd |  f1_mean |    f1_sd |  f2_mean |    f2_sd |
+|:-----|---------:|----------:|---------:|---------:|---------:|---------:|
+| bi01 | 26.19733 | 23.572779 | 520.2511 | 138.3988 | 1727.237 | 666.6207 |
+| bi02 | 17.86356 |  7.542213 | 525.0113 | 132.9608 | 1588.668 | 677.9067 |
+| bi03 | 17.17222 |  7.357463 | 612.5673 | 239.1793 | 1711.122 | 699.1391 |
+
+``` r
+kable(ne_means)
+```
+
+| id   | vot_mean |   vot_sd |  f1_mean |    f1_sd |  f2_mean |    f2_sd |
+|:-----|---------:|---------:|---------:|---------:|---------:|---------:|
+| ne01 | 28.20733 | 16.37009 | 608.5418 | 235.1716 | 1868.547 | 728.0210 |
+| ne02 | 31.63333 | 16.84545 | 541.8582 | 212.1680 | 1833.359 | 658.8014 |
+| ne03 | 34.90911 | 16.29910 | 569.7533 | 143.6087 | 1641.323 | 570.6210 |
 
 Additionally, taken as a whole, the L2 learner group also had longer VOT
 than the bilingual group.
 
+``` r
 kable(means_vot_group)
+```
+
+| group | vot_mean |   vot_sd |
+|:------|---------:|---------:|
+| bi    | 20.41104 | 15.35773 |
+| ne    | 31.58326 | 16.61162 |
 
 # Reflections
 

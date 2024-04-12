@@ -294,14 +294,18 @@ ggplot(plot_f2u, aes(x = item, y = f2, fill = group)) +
 
 # Conclusion
 
-The initial hypothesis was that the L2 learners will have longer VOTs due to the influence of their L1). After analyzing the data, specifically the VOT averages for bilingual participants compared to the VOT averages for L2 learners, we can see that each individual L2 learner had longer VOT than the bilingual participants.
+The initial hypothesis was that the L2 learners will have longer VOTs due to the influence of their L1. After analyzing the data, specifically the VOT averages for bilingual participants compared to the VOT averages for L2 learners, we can see that each individual L2 learner had longer VOT than the bilingual participants.
 
+```{r}
 kable(bi_means)
 kable(ne_means)
+```
 
 Additionally, taken as a whole, the L2 learner group also had longer VOT than the bilingual group.
 
+```{r}
 kable(means_vot_group)
+```
 
 # Reflections
 
