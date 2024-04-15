@@ -1,8 +1,8 @@
 Programming assignment 4
 ================
 
-**Author**: Alejandro Jaume-Losa **Date**: Last update: 2024-04-12
-17:46:09.814569
+**Author**: Alejandro Jaume-Losa **Date**: Last update: 2024-04-15
+13:06:34.06324
 
 # Overview
 
@@ -638,6 +638,22 @@ ggplot(plot_f2u, aes(x = item, y = f2, fill = group)) +
 <img src="README_files/figure-gfm/plots-21.png" width="672" />
 
 # Praat pictures
+
+``` r
+# Wave form and spectogram of a bilingual participant
+
+praatpicture::praatpicture("bi01_kaka.wav")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+``` r
+# Wave form and spectogram of a native speaker (L2 learner) participant
+
+praatpicture::praatpicture("ne01_kaka.wav")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
 
 ## Hypothesis test
 

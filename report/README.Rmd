@@ -281,6 +281,18 @@ ggplot(plot_f2u, aes(x = item, y = f2, fill = group)) +
 
 # Praat pictures
 
+```{r}
+
+# Wave form and spectogram of a bilingual participant
+
+praatpicture::praatpicture("bi01_kaka.wav")
+
+# Wave form and spectogram of a native speaker (L2 learner) participant
+
+praatpicture::praatpicture("ne01_kaka.wav")
+
+
+```
 
 
 ## Hypothesis test
